@@ -1,0 +1,60 @@
+<!-- entry.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Entry</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Word Entry</h1>
+
+        <form action="/add_entry" method="post">
+            <label for="word">Word: (বাঙলা)</label>
+            <input type="text" name="word" required><br>
+
+            <label for="transliteration">Transliteration: (باڠلا)</label>
+            <input type="text" name="transliteration" required><br>
+
+            <label for="meaning">Meaning: (English)</label>
+            <input type="text" name="meaning" required><br>
+
+            <label for="pos">Parts of Speech:</label>
+            <select name="pos" required>
+                <option value="noun">Noun</option>
+                <option value="verb">Verb</option>
+                <option value="pronoun">Pronoun</option>
+                <option value="adjective">Adjective</option>
+                <option value="adverb">Adverb</option>
+                <!-- Add more options as needed -->
+            </select><br>
+
+            <label for="category">Category:</label>
+            <select name="category" required>
+                <option value="general">General</option>
+                <option value="exceptional">Exceptional</option>
+                <option value="perso-arabic">PersoArabic</option>
+                <option value="modified p-a">Modified PersoArabic</option>
+                <!-- Add more options as needed -->
+            </select><br>
+                
+            {% if success_message %}
+            <p style="color: green;">{{ success_message }}</p>
+            {% endif %}
+
+            {% if word_exists_message %}
+                <p style="color: red;">{{ word_exists_message }}</p>
+            {% endif %}
+
+            <button type="submit">Submit</button>
+        </form>
+        <p><a href="{{ url_for('index') }}">See Dictionary</a></p>
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

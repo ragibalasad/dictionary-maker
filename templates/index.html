@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Dictionary</title>
+</head>
+<body>
+    <h1>Words</h1><p>Total Words: {{ word_count }}</p>
+    <a href="{{ url_for('entry') }}">Add New Entry</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Word</th>
+            <th>Transliteration</th>
+            <th>Meaning</th>
+            <th>Category</th>
+            <th>Parts of Speech</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+            <tr>
+                <td>{{ entry.Word }}</td>
+                <td>{{ entry.Transliteration }}</td>
+                <td>{{ entry.Meaning }}</td>
+                <td>{{ entry.Category }}</td>
+                <td>{{ entry.POS }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
